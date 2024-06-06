@@ -56,8 +56,11 @@ input:focus{
 }
 
 @media (max-width: 768px) {
+    .button{
+        flex-direction: column;
+        row-gap: 20px;
+    }
     .clear{
-        width: 100%;
-        display: block;
+        width: 50%;
     }
 }
