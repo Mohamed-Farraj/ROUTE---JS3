@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="style/bootstrap.min.css" />
     <link rel="stylesheet" href="style/all.min.css" />
     <link rel="stylesheet" href="style/style.css" />
-    <title>Quote</title>
+    <title>Bookmarker</title>
   </head>
   <body>
     <div class="container py-1">
@@ -58,7 +58,7 @@
             type="text"
             placeholder="Bookmark Name"
           />
-          <label for="url d-flex">
+          <label for="url">
             <h6>
               <i class="fa fa-link" aria-hidden="true"></i> Site Url
             </h6></label
@@ -70,8 +70,11 @@
             placeholder="Website URL"
           />
           <div class="button d-flex">
-            <button type="button" class="btn btn-outline-primary m-auto px-5">
+            <button onclick="add()" type="button" class="btn btn-outline-primary m-auto px-5">
               Submit
+            </button>
+            <button onclick="clearbookmarks()" type="button" class="btn btn-outline-danger m-auto px-5">
+              Clear all Bookmarks
             </button>
           </div>
         </div>
@@ -85,21 +88,7 @@
             <th>Visit</th>
             <th>Delete</th>
           </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>www</td>
-              <td>
-                <a href="facebook.com" target="_blank"><button type="button" class="btn btn-outline-primary">
-                  <i class="fa fa-eye" aria-hidden="true"></i> visit
-                </button></a>
-              </td>
-              <td>
-                <button type="button" class="btn btn-outline-danger">
-                  <i class="fa fa-trash" aria-hidden="true"></i> delete
-                </button>
-              </td>
-            </tr>
+          <tbody id="res">
           </tbody>
         </table>
       </div>
