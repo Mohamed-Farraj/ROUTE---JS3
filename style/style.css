@@ -54,3 +54,10 @@ input:focus{
     color:#3F72AF;
     background-color: transparent
 }
+
+@media (max-width: 768px) {
+    .clear{
+        width: 100%;
+        display: block;
+    }
+}
