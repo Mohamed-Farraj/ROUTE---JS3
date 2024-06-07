@@ -31,7 +31,10 @@ h1:hover::after{
     background-clip: text;
     color : transparent;
     font-family: 'pacifico';
+}
 
+.input .title h2 ,th{
+    white-space: nowrap;
 }
 
 input{
@@ -43,7 +46,11 @@ input:focus{
     box-shadow: 0 0 5px #3F72AF;
     outline: none;
     transition: all .5s;
-
+}
+.invalid:focus{
+    box-shadow: 0 0 5px red;
+    outline: none;
+    transition: all .5s;
 }
 .result table thead th{
     color:#112D4E;
@@ -52,7 +59,10 @@ input:focus{
 }
 .result table tbody tr td{
     color:#3F72AF;
-    background-color: transparent
+    background-color: transparent;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
 }
 
 @media (max-width: 768px) {
@@ -64,3 +74,4 @@ input:focus{
         width: 50%;
     }
 }
+

@@ -44,7 +44,7 @@
       <div class="input border-bottom py-4">
         <div class="title d-flex align-items-center justify-content-center">
           <i class="fa fa-bookmark" aria-hidden="true"></i>
-          <h2 class="p-2">Bookmark your favorite sites</h2>
+          <h2 class="p-2 ">Bookmark your favorite sites</h2>
           <i class="fa fa-bookmark" aria-hidden="true"></i>
         </div>
 
@@ -54,9 +54,10 @@
           >
           <input
             id="bookmark"
-            class="w-100 mb-3 p-1 rounded"
+            class="form-control mb-3 p-1 rounded"
             type="text"
             placeholder="Bookmark Name"
+            oninput="checknamevalidation(this.value)"
           />
           <label for="url">
             <h6>
@@ -65,7 +66,7 @@
           >
           <input
             id="url"
-            class="w-100 mb-3 p-1 rounded"
+            class="form-control w-100 mb-3 p-1 rounded"
             type="text"
             placeholder="Website URL"
           />
@@ -73,7 +74,7 @@
             <button onclick="add()" type="button" class="clear btn btn-outline-primary m-auto px-5">
               Submit
             </button>
-            <button onclick="clearbookmarks()" type="button" class="clear btn btn-outline-danger m-auto px-5">
+            <button onclick="clearbookmarks()" type="button" class="clear btn btn-outline-danger m-auto px-md-5">
               Clear all Bookmarks
             </button>
           </div>
