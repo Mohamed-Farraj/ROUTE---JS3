@@ -2,6 +2,7 @@ html,body{
     height: 100%;
     background-color: #F9F7F7;
     color:#112D4E;
+    box-sizing: border-box;
 
 }
 *::selection{
@@ -74,6 +75,26 @@ input:focus{
     box-shadow:0 0 10px #3F72AF;
 }
 
+
+.layer{
+    background-color: rgba(128, 128, 128, 0.516);
+}
+.validationerr{
+    background-color: #F9F7F7;
+    width: 50%;
+}
+.circles .circle,.exit{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+.exit{
+    width: 30px;
+    height:30px;
+    background-color: transparent;
+    border-color: transparent;
+    font-size: xx-large;
+}
 @media (max-width: 768px) {
     .button{
         flex-direction: column;
@@ -82,5 +103,15 @@ input:focus{
     .clear{
         width: 50%;
     }
-}
+    .validationerr
+    {
+        width: 90%;
+    }
+    .errbody h2{
+        font-size: larger;
 
+    }
+    .rule span{
+        font-size: medium;
+    }
+}

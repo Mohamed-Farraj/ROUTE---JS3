@@ -4,13 +4,14 @@ if (sites === null) {
 }
 var sitename;
 var siteurl;
-var validationflag = false;
+var validationflagn = false;
+var validationflagu = false;
 display(document.getElementById("floatingSelect").value);
 function add() {
   if (sites === null) {
     sites = [];
   }
-  if (validationflag) {
+  if (validationflagn && validationflagu) {
     sitename = document.getElementById("bookmark").value;
     siteurl = document.getElementById("url").value;
     var reg = /^https{0,1}:\/\//gmi;
@@ -29,7 +30,7 @@ function add() {
     validationflag = false;
   }
   else{
-    console.log("error error error");
+    document.getElementById('layer').classList.remove('d-none');
   }
 }
 
@@ -89,14 +90,14 @@ function checknamevalidation(n, type) {
     if (n === null) {
       n = "";
     }
-    if (n.length < 3 || n.length > 30) {
+    if (n.length < 3 || n.length > 30 ) {
       document.getElementById("bookmark").classList.remove("is-valid");
       document.getElementById("bookmark").classList.add("is-invalid");
-      validationflag = false;
+      validationflagn = false;
     } else {
       document.getElementById("bookmark").classList.remove("is-invalid");
       document.getElementById("bookmark").classList.add("is-valid");
-      validationflag = true;
+      validationflagn = true;
     }
   } else if (type === "url") {
     if (n === null) {
@@ -107,11 +108,15 @@ function checknamevalidation(n, type) {
     if (regex.test(n) && n.length < 70) {
       document.getElementById("url").classList.remove("is-invalid");
       document.getElementById("url").classList.add("is-valid");
-      validationflag = true;
+      validationflagu = true;
     } else {
       document.getElementById("url").classList.remove("is-valid");
       document.getElementById("url").classList.add("is-invalid");
-      validationflag = false;
+      validationflagu = false;
     }
   }
+}
+function closemsg()
+{
+  document.getElementById('layer').classList.add('d-none')
 }

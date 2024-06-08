@@ -34,11 +34,39 @@
     <title>Bookmarker</title>
   </head>
   <body>
+    <div id="layer" class="layer d-none w-100 h-100 position-fixed top-0 left-0 right-0 z-3 d-flex justify-content-center align-items-center ">
+      <div class="validationerr position-relative  d-flex flex-column justify-content-center p-2">
+        <div class="errhead w-100 d-flex p-3 justify-content-between align-items-center">
+          <div class="circles column-gap-1 w-auto d-flex justify-content-between align-items-center">
+            <div class="circle bg-danger"></div>
+            <div class="circle bg-warning"></div>
+            <div class="circle bg-primary"></div>
+          </div>
+          <button onclick="closemsg()" class="exit d-flex justify-content-center align-items-center ">
+            <i class="fa-solid fa-xmark "></i>
+          </button>
+        </div>
+        <div class="errbody p-3">
+          <h2 class="mb-3">Site Name or Url is not valid, Please follow the rules below :</h2>
+          <div class="rules d-flex flex-column  justify-content-center row-gap-3">
+            <div class="rule">
+              <i class="fa-solid fa-circle-arrow-right"></i>
+              <span class="lead">Site name must contain at least 3 characters and at most 30 characters</span>
+            </div>
+            <div class="rule">
+              <i class="fa-solid fa-circle-arrow-right"></i>
+              <span class="lead">Site URL must be a valid one</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container py-1">
       <div
         class="header d-flex justify-content-center text-center border-bottom py-4"
       >
-        <h1 class="position-relative">Bookmarker</h1>
+        <h1 class="position-relative z-1">Bookmarker</h1>
       </div>
 
       <div class="input border-bottom py-4">
