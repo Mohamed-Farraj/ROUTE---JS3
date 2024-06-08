@@ -6,6 +6,9 @@ var sitename;
 var siteurl;
 var validationflagn = false;
 var validationflagu = false;
+var validationflagnu = true;
+var validationflaguu = true;
+var updateindex = -1;
 display(document.getElementById("floatingSelect").value);
 function add() {
   if (sites === null) {
@@ -30,16 +33,29 @@ function add() {
     validationflag = false;
   }
   else{
+    document.getElementById('errbody').classList.remove('d-none');
     document.getElementById('layer').classList.remove('d-none');
   }
 }
 
-function display(order) {
+function display(order=document.getElementById('floatingSelect').value,term=document.getElementById('search').value) {
   var rows = "";
   var s = sites.slice();
+  var filter = [];
   if (sites !== null) {
     if(order === 'n'){s.reverse(); console.log("newest chosen", "sites :",sites,"s:",s);}
     if(order === 'o'){s= sites; console.log("oldest chosen", "sites :",sites,"s:",s);}
+    if(term !=="")
+      {
+        for(var j=0;j<s.length;j++)
+          {
+            if(s[j].name.includes(term.trim()))
+              {
+                filter.push(s[j]);
+              }
+          }
+          s = filter.slice();
+      }
     
     for (var i = 0; i < s.length; i++) {
       rows += `
@@ -99,7 +115,22 @@ function checknamevalidation(n, type) {
       document.getElementById("bookmark").classList.add("is-valid");
       validationflagn = true;
     }
-  } else if (type === "url") {
+  }
+  else if (type === "nameu") {
+    if (n === null) {
+      n = "";
+    }
+    if (n.length < 3 || n.length > 30 ) {
+      document.getElementById("bookmarku").classList.remove("is-valid");
+      document.getElementById("bookmarku").classList.add("is-invalid");
+      validationflagnu = false;
+    } else {
+      document.getElementById("bookmarku").classList.remove("is-invalid");
+      document.getElementById("bookmarku").classList.add("is-valid");
+      validationflagnu = true;
+    }
+  }
+   else if (type === "url") {
     if (n === null) {
       n = "";
     }
@@ -115,8 +146,56 @@ function checknamevalidation(n, type) {
       validationflagu = false;
     }
   }
+   else if (type === "urlu") {
+    if (n === null) {
+      n = "";
+    }
+    var regex = /^\S+\.[a-zA-Z]{2,}/gi;
+
+    if (regex.test(n) && n.length < 70) {
+      document.getElementById("urlu").classList.remove("is-invalid");
+      document.getElementById("urlu").classList.add("is-valid");
+      validationflaguu = true;
+    } else {
+      document.getElementById("urlu").classList.remove("is-valid");
+      document.getElementById("urlu").classList.add("is-invalid");
+      validationflaguu = false;
+    }
+  }
+
 }
 function closemsg()
 {
-  document.getElementById('layer').classList.add('d-none')
+  document.getElementById('layer').classList.add('d-none');
+  document.getElementById('errbody').classList.add('d-none');
+  document.getElementById('updateform').classList.add('d-none');
+}
+function search(term)
+{
+  display(document.getElementById("floatingSelect").value,term);
+}
+function updatebookmark(index)
+{
+  if(document.getElementById("floatingSelect").value === 'n')
+    {index = (sites.length-1)-index;}
+  updateindex = index;
+  document.getElementById('layer').classList.remove('d-none');
+  document.getElementById('updateform').classList.remove('d-none');
+  document.getElementById('bookmarku').value = sites[index].name;
+  document.getElementById('urlu').value = sites[index].url;
+}
+function update(){
+  if(validationflagnu && validationflaguu)
+    {
+      sites[updateindex].name = document.getElementById('bookmarku').value;
+      sites[updateindex].url = document.getElementById('urlu').value;
+      localStorage.setItem("bookmarks", JSON.stringify(sites));
+      display();
+      closemsg();
+    }
+    else
+    {
+      document.getElementById('errbody').classList.remove('d-none');
+    document.getElementById('layer').classList.remove('d-none');
+    }
 }

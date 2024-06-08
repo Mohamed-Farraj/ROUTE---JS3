@@ -46,7 +46,7 @@
             <i class="fa-solid fa-xmark "></i>
           </button>
         </div>
-        <div class="errbody p-3">
+        <div id="errbody" class="errbody p-3 d-none">
           <h2 class="mb-3">Site Name or Url is not valid, Please follow the rules below :</h2>
           <div class="rules d-flex flex-column  justify-content-center row-gap-3">
             <div class="rule">
@@ -56,6 +56,41 @@
             <div class="rule">
               <i class="fa-solid fa-circle-arrow-right"></i>
               <span class="lead">Site URL must be a valid one</span>
+            </div>
+          </div>
+        </div>
+        <div id="updateform" class="updateform d-none">
+          <div class="inputFields">
+            <label for="bookmarku"
+              ><h6><i class="fa-solid fa-book-bookmark"></i> Site Name</h6></label
+            >
+            <input
+              id="bookmarku"
+              class="form-control mb-3 p-1 rounded"
+              type="text"
+              placeholder="Bookmark Name"
+              oninput="checknamevalidation(this.value , 'nameu')"
+            />
+            <label for="urlu">
+              <h6>
+                <i class="fa fa-link" aria-hidden="true"></i> Site Url
+              </h6></label
+            >
+            <input
+              id="urlu"
+              class="form-control w-100 mb-3 p-1 rounded"
+              type="text"
+              placeholder="Website URL"
+              oninput="checknamevalidation(this.value , 'urlu')"
+            />
+            <div class="button d-flex mb-3">
+              <button
+                onclick="update()"
+                type="button"
+                class="clear btn btn-warning m-auto px-5"
+              >
+                Update
+              </button>
             </div>
           </div>
         </div>
@@ -103,7 +138,7 @@
             <button
               onclick="add()"
               type="button"
-              class="clear btn btn-outline-primary m-auto px-5"
+              class="clear btn btn-primary m-auto px-5"
             >
               Submit
             </button>
@@ -133,6 +168,7 @@
               class="form-control w-auto flex-grow-1 p-2 rounded"
               type="search"
               placeholder="Search by website name"
+              oninput="search(this.value)"
             />
           </div>
         </div>
