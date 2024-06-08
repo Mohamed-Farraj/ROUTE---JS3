@@ -65,6 +65,15 @@ input:focus{
     vertical-align: middle;
 }
 
+.result table tbody tr:nth-child(odd){
+    background-color: #fefefe;
+}
+
+.form-control.is-valid,.form-control.is-valid:focus{
+    border-color: #3F72AF;
+    box-shadow:0 0 10px #3F72AF;
+}
+
 @media (max-width: 768px) {
     .button{
         flex-direction: column;
