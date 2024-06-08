@@ -5,7 +5,7 @@ if (sites === null) {
 var sitename;
 var siteurl;
 var validationflag = false;
-display();
+display(document.getElementById("floatingSelect").value);
 function add() {
   if (sites === null) {
     sites = [];
@@ -21,7 +21,7 @@ function add() {
     sites.push({ name: sitename, url: siteurl });
     console.log("array is ", sites);
     localStorage.setItem("bookmarks", JSON.stringify(sites));
-    display();
+    display(document.getElementById("floatingSelect").value);
     document.getElementById("bookmark").value = "";
     document.getElementById("url").value = "";
     document.getElementById("bookmark").classList.remove("is-valid");
@@ -33,17 +33,21 @@ function add() {
   }
 }
 
-function display() {
+function display(order) {
   var rows = "";
+  var s = sites.slice();
   if (sites !== null) {
-    for (var i = 0; i < sites.length; i++) {
+    if(order === 'n'){s.reverse(); console.log("newest chosen", "sites :",sites,"s:",s);}
+    if(order === 'o'){s= sites; console.log("oldest chosen", "sites :",sites,"s:",s);}
+    
+    for (var i = 0; i < s.length; i++) {
       rows += `
             <tr>
             <td class="px-1">${i + 1}</td>
-            <td class="px-1">${sites[i].name}</td>
+            <td class="px-1">${s[i].name}</td>
             <td class="px-1">
               <a href="${
-                sites[i].url
+                s[i].url
               }" target="_blank"><button type="button" class="btn btn-outline-primary">
                 <i class="fa fa-eye" aria-hidden="true"></i> <span class="d-none d-md-inline">Visit</span>
               </button></a>
@@ -61,21 +65,23 @@ function display() {
           </tr>
             `;
     }
+    document.getElementById("res").innerHTML = rows;
   }
-  document.getElementById("res").innerHTML = rows;
 }
 
 function clearbookmarks() {
   localStorage.removeItem("bookmarks");
-  sites = null;
+  sites = [];
   console.log("we are in clear function");
-  display();
+  display(document.getElementById("floatingSelect").value);
 }
 
 function deletebookmark(index) {
+  if(document.getElementById("floatingSelect").value == 'n') 
+    {index = (sites.length-1)-index; } 
   sites.splice(index, 1);
   localStorage.setItem("bookmarks", JSON.stringify(sites));
-  display();
+  display(document.getElementById("floatingSelect").value);
 }
 
 function checknamevalidation(n, type) {
